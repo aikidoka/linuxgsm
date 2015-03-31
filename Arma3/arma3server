@@ -21,10 +21,15 @@ steampass="password"
 ip="0.0.0.0"
 
 fn_parms(){
-parms="-netlog -ip=${ip} -cfg=${networkcfgfullpath} -config=${servercfgfullpath} -mod=${mods}"
+parms="-netlog -ip=${ip} -cfg=${networkcfgfullpath} -config=${servercfgfullpath} -mod=${mods} -port=${serverport}"
 }
 
 #### Advanced Variables ####
+
+# PORT
+# STEAM ports in Arma 3 are hardcoded as now linked to game-port of the server instance (+1 query +2 report to master)
+# For multiple instances update the tens location, example: 2312
+serverport="2302"
 
 # ARMA 3 Modules
 # add mods with relative paths: 
