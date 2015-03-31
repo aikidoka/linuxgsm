@@ -6,8 +6,8 @@
 
 fn_arma3config(){
 mkdir -pv "${servercfgdir}"
-mv -v lgsm-default.server.cfg "${servercfgfullpath}"
-mv -v lgsm-default.network.cfg "${networkcfgfullpath}"
+cp -v lgsm-default.server.cfg "${servercfgfullpath}"
+cp -v lgsm-default.network.cfg "${networkcfgfullpath}"
 sleep 1
 echo ""
 }
