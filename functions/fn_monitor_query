@@ -2,7 +2,7 @@
 # LGSM fn_monitor_query function
 # Author: Daniel Gibbs
 # Website: http://gameservermanagers.com
-# Version: 220315
+# Version: 200415
 
 # Description: uses gsquery.py to directly query the server.
 # Detects if the server has frozen.
@@ -15,8 +15,8 @@ if [ -f gsquery.py ]; then
 	elif [ "${engine}" == "spark" ]; then
 		port=$((${port} + 1))
 	elif [ "${engine}" == "realvirtuality" ]; then
-		queryport=$(grep -s steamqueryport= "${servercfgfullpath}"|grep -v //|tr -d '\r'|tr -cd [:digit:])
-		port=${queryport}
+		serverport=$(grep -s serverport= "${selfname}"|grep -v //|tr -d '\r'|tr -cd [:digit:])
+		port=${serverport}
 	elif [ "${engine}" == "unity3d" ]; then
 		gameport=$(grep ServerPort "${servercfgfullpath}"|tr -cd [:digit:])
 		port=$((${gameport} + 1))

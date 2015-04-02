@@ -2,7 +2,7 @@
 # LGSM fn_details function
 # Author: Daniel Gibbs
 # Website: http://danielgibbs.co.uk
-# Version: 230214
+# Version: 020415
 
 # Description: Displays server infomation.
 
@@ -184,19 +184,19 @@ echo -e ""
 echo -e "\e[92mPorts\e[0m"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =
 echo -e "Change ports by editing the parameters in"
-echo -e "${servercfgfullpath}."
+echo -e "${selfname}."
 echo -e ""
 echo -e "Useful port diagnostic command:"
 echo -e "netstat -atunp | grep arma3server"
 echo -e ""
-if [ -z ${port} ] || [ -z ${queryport} ] || [ -z ${masterport} ] ; then
-	echo -e "\e[0;31mERROR!\e[0m Missing/commented ports in ${servercfg}."
+if [ -z ${serverport} ] ; then
+	echo -e "\e[0;31mERROR!\e[0m Missing/commented port in ${selfname}."
 	echo -e ""
 fi
 echo -e "DESCRIPTION\tDIRECTION\tPORT\tPROTOCOL" >> .fn_details_ports
-echo -e "> Game\tINBOUND\t${port}\tudp" >> .fn_details_ports
-echo -e "> Steam: Query\tINBOUND\t${queryport}\tudp" >> .fn_details_ports
-echo -e "> Steam: Master traffic\tINBOUND\t${masterport}\tudp" >> .fn_details_ports
+echo -e "> Game\tINBOUND\t${serverport}\tudp" >> .fn_details_ports
+echo -e "> Steam: Query\tINBOUND\t$((${serverport} + 1))\tudp" >> .fn_details_ports
+echo -e "> Steam: Master traffic\tINBOUND\t$((${serverport} + 2))\tudp" >> .fn_details_ports
 column -s $'\t' -t .fn_details_ports
 rm -f .fn_details_ports
 fn_details_statusbottom
